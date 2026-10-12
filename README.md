@@ -36,3 +36,22 @@ Expected POST body (multipart/form-data):
 
 ## Free-only path
 There is no honest guarantee of unlimited, always-on, zero-cost AI video generation. The code therefore defaults to demo mode and never silently sends user content to a third-party service. Choose a currently available free/open-source GPU runtime or your own hardware before enabling real generation.
+
+## Free model backend starter (new)
+
+A prototype Hugging Face ZeroGPU app is included in the `huggingface-space/` folder:
+- `huggingface-space/app.py`
+- `huggingface-space/requirements.txt`
+- `huggingface-space/README.md`
+
+### To connect it
+1. Create a free Hugging Face account and verify it.
+2. Create a new Gradio Space and select ZeroGPU only if the free option is available. Do not choose paid GPU hardware.
+3. Copy the three files from `huggingface-space/` into the root of that Space.
+4. Wait for the Space to build and copy its public Space URL.
+5. Open `engine-config.js` in this GitHub repository and set `gradioSpaceUrl` to that Space URL, then set `demoMode: false`.
+6. Commit the change. GitHub Pages will redeploy the frontend.
+
+The frontend includes a Gradio API adapter, but it still requires a real Space URL to be configured and tested. Free ZeroGPU has limited daily quota, queue/runtime limits, and no guarantee of successful or unlimited generation. Do not use paid hardware if your budget must remain zero. The first generation may fail or time out because video models are large.
+
+Never put an access token or secret in `engine-config.js` or any public frontend file.
