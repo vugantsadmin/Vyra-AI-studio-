@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <title>VYRA AI Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="VYRA AI Studio home">
+        <span class="brand-mark">V</span>
+        <span><strong>VYRA</strong><small>AI STUDIO</small></span>
+      </a>
+      <div class="sidebar-label">WORKSPACE</div>
+      <button class="side-link selected"><span>✦</span> Video Studio</button>
+      <button class="side-link" disabled title="Coming later"><span>◈</span> My Creations <em>SOON</em></button>
+      <div class="sidebar-bottom">
+        <div class="engine-card"><span class="status-dot"></span><div><strong>Engine status</strong><small id="engineStatus" data-kind="neutral">Demo mode · engine not connected</small></div></div>
+        <p class="sidebar-foot">Free-first prototype<br>Generation engine not connected</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow">CREATIVE WORKSPACE</p><h1>Video Studio</h1></div>
+        <div class="topbar-pill"><span class="status-dot"></span> Free-first mode</div>
+      </header>
+
+      <section class="intro">
+        <div><p class="eyebrow lime">MAKE SOMETHING UNREAL</p><h2>Your imagination,<br><span>in motion.</span></h2><p class="intro-copy">Create video concepts from a prompt or bring a still image to life.</p></div>
+        <div class="intro-orb" aria-hidden="true"><div class="orb-core"></div><span class="orb-ring ring-one"></span><span class="orb-ring ring-two"></span></div>
+      </section>
+
+      <div class="studio-grid">
+        <section class="panel creation-panel">
+          <div class="panel-heading"><div><span class="step-number">01</span><h3>Create a video</h3></div><span class="tiny-tag">AI WORKFLOW</span></div>
+          <div class="mode-tabs" role="tablist" aria-label="Generation mode">
+            <button class="mode-tab active" data-mode="text-to-video" role="tab" aria-selected="true"><span>✦</span> Text to Video</button>
+            <button class="mode-tab" data-mode="image-to-video" role="tab" aria-selected="false"><span>▧</span> Image to Video</button>
+          </div>
+
+          <label id="promptLabel" for="promptInput">Describe your video</label>
+          <textarea id="promptInput" rows="5" maxlength="2000" placeholder="Describe the scene, camera movement, lighting, mood, and details…"></textarea>
+          <div class="prompt-bottom"><span>Be descriptive for better results</span><button id="samplePrompt" class="text-button" type="button">Try a sample prompt ↗</button></div>
+
+          <div id="imageInputPanel" class="hidden">
+            <label for="imageInput">Starting image</label>
+            <label class="upload-zone" for="imageInput">
+              <input id="imageInput" type="file" accept="image/*">
+              <img id="uploadedImage" class="uploaded-image hidden" alt="Selected image preview">
+              <span id="uploadPlaceholder"><strong>＋ Upload an image</strong><small>PNG, JPG or WebP · up to 12 MB</small></span>
+            </label>
+          </div>
+
+          <div class="settings-grid">
+            <div class="field"><label for="aspectRatio">Aspect ratio</label><select id="aspectRatio"><option value="9:16">9:16 · Portrait</option><option value="16:9">16:9 · Landscape</option><option value="1:1">1:1 · Square</option></select></div>
+            <div class="field"><label for="quality">Quality</label><select id="quality"><option value="standard">Standard</option><option value="high">High (if supported)</option></select></div>
+            <div class="field full-field"><div class="range-heading"><label for="duration">Duration</label><strong id="durationValue">5s</strong></div><input id="duration" type="range" min="3" max="10" value="5"></div>
+            <div class="field full-field"><label for="style">Visual style</label><select id="style"><option value="cinematic">Cinematic</option><option value="realistic">Photorealistic</option><option value="anime">Anime</option><option value="3d">3D animation</option><option value="dreamlike">Dreamlike</option></select></div>
+          </div>
+          <button id="generateButton" class="generate-button" type="button"><span>✦</span> Generate video <span class="button-arrow">↗</span></button>
+          <p class="privacy-note"><span>⌑</span> Demo mode sends no prompt or image to a server.</p>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="panel-heading"><div><span class="step-number">02</span><h3 id="previewTitle">Text-to-Video Preview</h3></div><span class="tiny-tag">OUTPUT</span></div>
+          <div class="preview-stage">
+            <div id="previewEmpty" class="preview-empty"><div class="preview-icon">▶</div><strong>Your creation starts here</strong><p>Set your prompt and settings, then start a generation job.</p></div>
+            <video id="resultVideo" class="hidden" controls playsinline></video>
+          </div>
+          <div class="progress-wrap"><div class="progress-meta"><span id="progressLabel">Waiting for prompt</span><span id="jobSummary">No active job</span></div><div class="progress-track"><div id="progressBar"></div></div></div>
+          <p id="resultNotice" class="result-notice">The interface is ready. A real model backend must be connected to generate actual video.</p>
+          <a id="downloadLink" class="download-link hidden" download="vyra-video.mp4" target="_blank" rel="noopener">Download generated video ↗</a>
+          <div class="engine-note"><span class="note-icon">i</span><p><strong>Free-first setup</strong><br>Unlimited free AI video generation cannot be guaranteed. VYRA stays in demo mode until a real model backend is configured.</p></div>
+        </section>
+      </div>
+      <footer>VYRA AI STUDIO <span>BUILDING THE FUTURE, FRAME BY FRAME.</span></footer>
+    </main>
+  </div>
+  <script src="engine-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
